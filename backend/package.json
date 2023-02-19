@@ -4,14 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GausAlMunirTushar/task-manager-app.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "task manager"
+  ],
+  "author": "GausAlMunirTushar",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/GausAlMunirTushar/task-manager-app/issues"
