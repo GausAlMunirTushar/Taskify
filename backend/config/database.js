@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 console.log(process.env.MONGO_URI)
-const MONGO_URI = "mongodb://localhost:27017/task-app";
+const MONGO_URI = "mongodb+srv://admin:tushar@cluster0.bstsr.mongodb.net/taks?retryWrites=true&w=majority";
 
 const options = {
     autoIndex: true,
