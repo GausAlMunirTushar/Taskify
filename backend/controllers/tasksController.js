@@ -41,10 +41,36 @@ const updateTaskStatus = (req, res)=>{
     })
 }
 
+const listTaskByStatus = (req, res)=>{
+    let status = req.params.status;
+    let email = req.headers['email'];
+    tasksModel.aggregate([
+        {$match: {status: status, email: email}},
+        {$project: {
+            _id: 1,
+            title: 1,
+            description: 1,
+            status: 1, 
+            createdDate :{
+                $dateToString: {
+                    date: "$createdDate",
+                    format: '%d-%m-%Y'
+                }
+            }
+        }}
+    ], (err, data)=>{
+        if(err){
+            res.status(400).json({status: "failed", data: err})
+        }
+        else{
+            res.status(200).json({status: "success", data: data})
+        }
+    });
+}
 
-
-module.exports = {
+module.exports = { 
     createTask,
     deleteTask,
     updateTaskStatus,
+    listTaskByStatus
 }
