@@ -68,9 +68,25 @@ const listTaskByStatus = (req, res)=>{
     });
 }
 
+const taskStatusCount = (req, res)=>{
+    let email = req.headers['email'];
+    tasksModel.aggregate([
+        {$match: {email: email}},
+        {$group: {_id:"$status", sum:{$count: {}}}},
+    ],(err, data)=>{
+        if(err){
+            res.status(400).json({status: "failed", data: err})
+        }
+        else{
+            res.status(200).json({status: "success", data: data})
+        }
+    });
+}
+
 module.exports = { 
     createTask,
     deleteTask,
     updateTaskStatus,
-    listTaskByStatus
+    listTaskByStatus,
+    taskStatusCount
 }
