@@ -1,10 +1,12 @@
-import React from 'react';
-
+import React, { Fragment, Suspense } from 'react';
+import LazyLoader from '../components/MasterLayout/LazyLoader';
 const ForgetPass = () => {
     return (
-        <div>
-            <h1>Forget Password</h1>
-        </div>
+        <Fragment>
+        <Suspense fallback={<LazyLoader/>}>
+
+        </Suspense>
+      </Fragment>
     );
 };
 

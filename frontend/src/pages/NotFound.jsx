@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { Fragment, Suspense } from 'react';
+import LazyLoader from '../components/MasterLayout/LazyLoader';
 
 const NotFound = () => {
     return (
-        <div>
-            <h1>Not Found</h1>
-        </div>
+      <Fragment>
+        <Suspense fallback={<LazyLoader/>}>
+
+        </Suspense>
+      </Fragment>
     );
 };
 

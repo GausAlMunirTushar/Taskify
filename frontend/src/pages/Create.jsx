@@ -1,10 +1,15 @@
-import React from 'react';
-
+import React, {Fragment,Suspense} from 'react';
+import MasterLayout from '../components/MasterLayout/MasterLayout';
+import LazyLoader from '../components/MasterLayout/LazyLoader';
 const Create = () => {
     return (
-        <div>
-            <h1>Create</h1>
-        </div>
+        <Fragment>
+            <MasterLayout>
+            <Suspense fallback={<LazyLoader/>}>
+
+</Suspense>
+            </MasterLayout>
+        </Fragment>
     );
 };
 

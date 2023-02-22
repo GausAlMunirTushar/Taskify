@@ -11,6 +11,7 @@ import Login from './pages/Login'
 import Registration from './pages/Registration';
 import ForgetPass from './pages/ForgetPass'
 import NotFound from './pages/NotFound'
+import FullscreenLoader from './components/MasterLayout/FullscreenLoader';
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
 				<Route path='*' element={<NotFound/>} />
 			</Routes>
       </BrowserRouter>
+	  <FullscreenLoader/>
     </Fragment>
   )
 }
