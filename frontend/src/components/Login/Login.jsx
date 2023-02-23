@@ -17,7 +17,11 @@ const Login = () => {
                                 <br/>
                                 <button className="btn w-100 animated fadeInUp float-end btn-primary">Next</button>
                                 <hr/>
-                               
+                                <div className="text-center w-100">
+                                        <Link className="text-center  ms-3 h6 animated fadeInUp" to="/Registration">Sign Up </Link>
+                                            <br/>    
+                                        <Link className="text-center ms-3 h6 animated fadeInUp" to="/ForgetPass">Forget Password</Link>
+                                </div>
                             </div>
                         </div>
                     </div>
