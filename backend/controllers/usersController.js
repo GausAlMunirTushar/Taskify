@@ -41,7 +41,7 @@ const profileUpdate = (req, res)=>{
     let reqBody = req.body;
     userModel.updateOne({email:email}, reqBody, (err, data)=>{
         if(err){
-            res.status(400).json({status:"failed", data: err})
+            res.status(200).json({status:"failed", data: err})
         }
         else{
             res.status(200).json({status:"success", data: data})
