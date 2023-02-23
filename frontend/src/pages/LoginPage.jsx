@@ -1,13 +1,15 @@
-import React, { Fragment, Suspense } from 'react';
+import React, {Fragment,Suspense,lazy} from 'react';
 import LazyLoader from '../components/MasterLayout/LazyLoader';
-const ForgetPass = () => {
+const Login = lazy (()=> import('../components/Login/Login'))
+
+const LoginPage = () => {
     return (
         <Fragment>
         <Suspense fallback={<LazyLoader/>}>
-
+            <Login/>
         </Suspense>
       </Fragment>
     );
 };
 
-export default ForgetPass;
+export default LoginPage;

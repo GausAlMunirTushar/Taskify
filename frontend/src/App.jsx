@@ -1,16 +1,16 @@
 import React, { Fragment } from 'react';
 import {BrowserRouter, Route, Routes, } from 'react-router-dom';
-import Dashboard from './pages/Dashboard';
-import Create from './pages/Create';
-import New from './pages/New';
-import Progress from './pages/Progress'
-import Completed  from './pages/Completed';
-import Canceled from './pages/Canceled'
-import Profile from './pages/Profile'
-import Login from './pages/Login'
-import Registration from './pages/Registration';
-import ForgetPass from './pages/ForgetPass'
-import NotFound from './pages/NotFound'
+import DashboardPage from './pages/DashboardPage';
+import CreatePage from './pages/CreatePage';
+import NewPage from './pages/NewPage';
+import ProgressPage from './pages/ProgressPage'
+import CompletedPage from './pages/CompletedPage';
+import CanceledPage from './pages/CanceledPage'
+import ProfilePage from './pages/ProfilePage'
+import LoginPage from './pages/LoginPage'
+import RegistrationPage from './pages/RegistrationPage';
+import ForgetPassPage from './pages/ForgetPassPage'
+import NotFoundPage from './pages/NotFoundPage'
 import FullscreenLoader from './components/MasterLayout/FullscreenLoader';
 
 const App = () => {
@@ -18,17 +18,17 @@ const App = () => {
     <Fragment>
       <BrowserRouter>
 			<Routes>
-				<Route exact path='/' element={<Dashboard/>} />
-				<Route exact path='/Create' element={<Create/>} />
-				<Route exact path='/All' element={<New/>} />
-				<Route exact path='/Progress' element={<Progress/>} />
-				<Route exact path='/Completed' element={<Completed/>} />
-				<Route exact path='/Canceled' element={<Canceled/>} />
-				<Route exact path='/Profile' element={<Profile/>} />
-				<Route exact path='/Login' element={<Login/>} />
-				<Route exact path='/Registration' element={<Registration/>} />
-				<Route exact path='/ForgetPass' element={<ForgetPass/>} />
-				<Route path='*' element={<NotFound/>} />
+				<Route exact path='/' element={<DashboardPage/>} />
+				<Route exact path='/Create' element={<CreatePage/>} />
+				<Route exact path='/All' element={<NewPage/>} />
+				<Route exact path='/Progress' element={<ProgressPage/>} />
+				<Route exact path='/Completed' element={<CompletedPage/>} />
+				<Route exact path='/Canceled' element={<CanceledPage/>} />
+				<Route exact path='/Profile' element={<ProfilePage/>} />
+				<Route exact path='/Login' element={<LoginPage/>} />
+				<Route exact path='/Registration' element={<RegistrationPage/>} />
+				<Route exact path='/ForgetPass' element={<ForgetPassPage/>} />
+				<Route path='*' element={<NotFoundPage/>} />
 			</Routes>
       </BrowserRouter>
 	  <FullscreenLoader/>
