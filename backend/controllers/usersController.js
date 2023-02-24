@@ -30,7 +30,7 @@ const login = (req, res)=>{
                 res.status(200).json({status:"success", token: token, data: data[0] })
             }
             else{
-                res.status(400).json({status: "unauthorized user"})
+                res.status(200).json({status: "unauthorized user"})
             }
         }
     });
