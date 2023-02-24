@@ -21,7 +21,7 @@ const login = (req, res)=>{
         {$project: {_id: 0, email: 1, firstName: 1, lastName: 1, mobileNumber: 1, photo: 1}}
     ], (err, data)=>{
         if(err){
-            res.status(400).json({status:"failed", data: err})
+            res.status(200).json({status:"failed", data: err})
         }
         else{
             if(data.length>0){
