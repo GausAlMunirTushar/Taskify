@@ -1,7 +1,30 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useRef} from 'react';
 import {Link} from "react-router-dom";
+import { errorToast, isEmail, isEmpty } from '../../helper/FormValid';
+import {loginRequest} from '../../api/api'
 
 const Login = () => {
+
+    let emailRef, passRef = useRef();
+
+    const submitLogin = ()=>{
+        let email = emailRef.value;
+        let password = passRef.value;
+        
+        if(isEmail(email)){
+            errorToast("Invalid Email Address")
+        }
+        else if(isEmpty(password)){
+            errorToast("Password Required")
+        }
+        else{
+            loginRequest(email, password).then((result)=>{
+                if(result === true){
+                    window.location.href="/"
+                }
+            })
+        }
+    }
     return (
         <Fragment>
             <div className="container">
@@ -11,11 +34,11 @@ const Login = () => {
                             <div className="card-body">
                                 <h4 className='text-center'>Sign In</h4>
                                 <br/>
-                                <input placeholder="User Email" className="form-control animated fadeInUp" type="email"/>
+                                <input ref={(input)=>emailRef=input} placeholder="User Email" className="form-control animated fadeInUp" type="email"/>
                                 <br/>
-                                <input placeholder="User Password" className="form-control animated fadeInUp" type="password"/>
+                                <input ref={(input)=>passRef=input} placeholder="User Password" className="form-control animated fadeInUp" type="password"/>
                                 <br/>
-                                <button className="btn w-100 animated fadeInUp float-end btn-primary">Next</button>
+                                <button onClick={submitLogin} className="btn w-100 animated fadeInUp float-end btn-primary">Next</button>
                                 <hr/>
                                 <div className="text-center w-100">
                                         <Link className="text-center  ms-3 h6 animated fadeInUp" to="/Registration">Sign Up </Link>
