@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/458.38666bbd.chunk.js","mappings":"qIAUA,UARmB,WACf,OACI,kBAIR,C","sources":["components/ForgetPass/ForgetPass.jsx"],"sourcesContent":["import React from 'react';\n\nconst ForgetPass = () => {\n    return (\n        <div>\n            \n        </div>\n    );\n};\n\nexport default ForgetPass;"],"names":[],"sourceRoot":""}
