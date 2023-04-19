@@ -5,13 +5,12 @@ class Session {
     getToken(){
         return localStorage.getItem("token")
     }
-    setUserDetails(UserDetails){
-        localStorage.setItem("UserDetails", JSON.stringify(UserDetails))
+    setUserDetails(userDetails){
+        localStorage.setItem("userDetails", JSON.stringify(userDetails))
     }
     getUserDetails(){
-        return JSON.parse(localStorage.getItem("UserDetails"))
+        return JSON.parse(localStorage.getItem("userDetails"))
     }
-
 }
 
 export const {

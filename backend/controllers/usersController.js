@@ -14,14 +14,14 @@ const registration = (req, res)=>{
     })
 }
 
-const login = (req, res)=>{
+const login = (req, res) => {
     let reqBody = req.body;
     usersModel.aggregate([
         {$match: reqBody},
-        {$project: {_id: 0, email: 1, firstName: 1, lastName: 1, mobileNumber: 1, photo: 1}}
+        {$project: {_id: 0, email: 1, firstName: 1, lastName: 1, mobileNumber: 1,}}
     ], (err, data)=>{
         if(err){
-            res.status(200).json({status:"failed", data: err})
+            res.status(200).json({status:"fail", data: err})
         }
         else{
             if(data.length>0){
