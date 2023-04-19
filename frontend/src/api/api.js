@@ -3,7 +3,7 @@ import { errorToast, successToast } from '../helper/FormValid';
 import store from '../redux/store/store'
 import {showLoader, hideLoader} from '../redux/state/settingSlice'
 import {setToken, setUserDetails} from '../helper/Session'
-const baseURL = 'https://task-manager-app-production.up.railway.app/api/v1';
+const baseURL = 'https://taskmasterx-backend.onrender.com/api/v1';
 
 const registrationRequest =(email, firstName, lastName, mobileNumber, password, photo)=>{
     store.dispatch(showLoader())
