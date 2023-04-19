@@ -11,6 +11,7 @@ class Session {
     getUserDetails(){
         return JSON.parse(localStorage.getItem("userDetails"))
     }
+
 }
 
 export const {

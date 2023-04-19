@@ -5,7 +5,7 @@ import {showLoader, hideLoader} from '../redux/state/settingSlice'
 import {setToken, setUserDetails} from '../helper/Session'
 const baseURL = 'https://taskmasterx-backend.onrender.com/api/v1';
 
-const registrationRequest =(email, firstName, lastName, mobileNumber, password, photo)=>{
+const registrationRequest = async (email, firstName, lastName, mobileNumber, password, photo)=>{
     store.dispatch(showLoader())
     let URL = baseURL +"/registration";
     let postBody = {
@@ -44,7 +44,7 @@ const registrationRequest =(email, firstName, lastName, mobileNumber, password, 
         return false;
     })
 }
-export const loginRequest = (email, password)=>{
+export const loginRequest = async (email, password)=>{
     store.dispatch(showLoader())
     let URL = baseURL +"/login";
     let postBody = {"email": email,"passoword": password}
