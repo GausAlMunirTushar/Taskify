@@ -19,7 +19,7 @@ const registrationRequest =(email, firstName, lastName, mobileNumber, password, 
     return axios.post(URL, postBody).then((res)=>{
         store.dispatch(hideLoader())
         if(res.status === 200){
-            if(res.data['status'] === "failed"){
+            if(res.data['status'] === "fail"){
                 if(res.data['data']['keyPattern']['email']===1){
                     errorToast("Email Already Exist")
                     return false;
