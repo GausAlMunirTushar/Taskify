@@ -21,7 +21,7 @@ const login = (req, res) => {
         {$project: {_id: 0, email: 1, firstName: 1, lastName: 1, mobileNumber: 1,}}
     ], (err, data)=>{
         if(err){
-            res.status(200).json({status:"fail", data: err})
+            res.status(400).json({status:"fail", data: err})
         }
         else{
             if(data.length>0){
@@ -30,7 +30,7 @@ const login = (req, res) => {
                 res.status(200).json({status:"success", token: token, data: data[0] })
             }
             else{
-                res.status(200).json({status: "unauthorized user"})
+                res.status(401).json({status: "unauthorized user"})
             }
         }
     });
