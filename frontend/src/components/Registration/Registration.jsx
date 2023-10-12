@@ -1,7 +1,7 @@
 import React, { useRef} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { isEmail, isEmpty, isMobile, errorToast } from '../../helper/FormValid';
-import registrationRequest from '../../api/api'
+import {registrationRequest} from '../../api/api'
 
 const Registration = () => {
 
