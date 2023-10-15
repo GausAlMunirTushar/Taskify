@@ -3,6 +3,7 @@
     import store from '../redux/store/store'
     import {showLoader, hideLoader} from '../redux/state/settingSlice'
     import {getToken, setToken, setUserDetails} from '../helper/Session'
+import { setCanceledTask, setCompletedTask, setNewTask, setProgressTask } from '../redux/state/taskSlice';
     const baseURL = 'https://task-backend-pvop.onrender.com/api/v1';
 
     const axiosHeader = {headers: {"token": getToken()}}
@@ -94,6 +95,36 @@ export const createTaskRequest = async (title, description) => {
     })
 }
 
+export const taskListByStatus = (Status) => {
+    store.dispatch(showLoader())
+
+    let uri = `${baseURL}/listTaskByStatus/${Status}`;
+
+    axios.get(uri, axiosHeader).then((res) => {
+        store.dispatch(hideLoader())
+        if(res.status === 200){
+            if(Status === "New"){
+                store.dispatch(setNewTask(res.data['data']))
+            }
+            else if(Status === "Completed"){
+                store.dispatch(setCompletedTask(res.data['data']))
+            }
+            else if(Status === "Canceled"){
+                store.dispatch(setCanceledTask(res.data['data']))
+            }
+            else if(Status === "Progress"){
+                store.dispatch(setProgressTask(res.data['data']))
+            }
+        }
+        else {
+            errorToast('Something Went Wrong')
+        }
+    }).catch((error) => {
+        errorToast('Something Went Wrong')
+        store.dispatch(hideLoader())
+    })
+
+}
 
 
 
