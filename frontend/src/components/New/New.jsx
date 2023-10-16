@@ -1,8 +1,10 @@
-import React, {Fragment, useEffect, useRef} from 'react';
+import React, {Fragment, useEffect,} from 'react';
 import {Container} from "react-bootstrap";
 import {AiOutlineCalendar, AiOutlineDelete,AiOutlineEdit} from "react-icons/ai";
 import { taskListByStatus } from '../../api/api';
 import { useSelector } from 'react-redux';
+import { deleteTodo } from '../../helper/DeleteAlert';
+import { updateTodo } from '../../helper/UpdateAlert';
 const New = () => {
     
     useEffect(()=> {
@@ -10,12 +12,27 @@ const New = () => {
     }, [])
 
     const newList = useSelector((state) => state.task.New)
+
+    const deleteItem=(id)=>{
+        deleteTodo(id).then((result)=>{
+            if(result===true){
+                taskListByStatus("New");
+            }
+        })
+    }
+    const statusChangeItem=(id, status)=>{
+        updateTodo(id, status).then((result) => {
+            if(result === true){
+                taskListByStatus('New')
+            }
+        })
+    }
     return (
         <Fragment>
         <Container fluid={true} className="content-body">
             <div className="row p-0 m-0">
                 <div className="col-12 col-md-6 col-lg-8 px-3">
-                    <h5>Task Completed</h5>
+                    <h5>Task New</h5>
                 </div>
                 <div className="col-12 float-end col-md-6 col-lg-4 px-2">
                     <div className="row">
@@ -38,8 +55,8 @@ const New = () => {
                                 <p className="animated fadeInUp">{item.description}</p>
                                 <p className="m-0 animated fadeInUp p-0">
                                     <AiOutlineCalendar/> {item.createdDate}
-                                    <a href className="icon-nav text-primary mx-1"><AiOutlineEdit /></a>
-                                    <a href className="icon-nav text-danger mx-1"><AiOutlineDelete /></a>
+                                    <a href onClick={statusChangeItem.bind(this, item._id, item.status)} className="icon-nav text-primary mx-1"><AiOutlineEdit /></a>
+                                    <a href onClick={deleteItem.bind(this, item._id)} className="icon-nav text-danger mx-1"><AiOutlineDelete /></a>
                                     <a href className="badge float-end bg-info">{item.status}</a>
                                 </p>
                             </div>

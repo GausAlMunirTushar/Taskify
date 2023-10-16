@@ -3,6 +3,8 @@ import {Container} from "react-bootstrap";
 import {AiOutlineCalendar, AiOutlineDelete,AiOutlineEdit} from "react-icons/ai";
 import { taskListByStatus } from '../../api/api';
 import { useSelector } from 'react-redux';
+import { deleteTodo } from '../../helper/DeleteAlert';
+import { updateTodo } from '../../helper/UpdateAlert';
 const Completed = () => {
 
    useEffect(() => {
@@ -10,7 +12,20 @@ const Completed = () => {
    }, [])
    
    const completedList = useSelector((state) => state.task.Completed)
-
+   const deleteItem=(id)=>{
+    deleteTodo(id).then((result)=>{
+        if(result===true){
+            taskListByStatus("Completed");
+        }
+    })
+}
+const statusChangeItem=(id, status)=>{
+    updateTodo(id, status).then((result) => {
+        if(result === true){
+            taskListByStatus('Completed')
+        }
+    })
+}
     return (
         <Fragment>
             <Container fluid={true} className="content-body">
@@ -39,8 +54,8 @@ const Completed = () => {
                                         <p className="animated fadeInUp">{item.description}</p>
                                         <p className="m-0 animated fadeInUp p-0">
                                             <AiOutlineCalendar/> {item.createdDate}
-                                            <a href className="icon-nav text-primary mx-1"><AiOutlineEdit /></a>
-                                            <a href className="icon-nav text-danger mx-1"><AiOutlineDelete /></a>
+                                            <a href onClick={statusChangeItem.bind(this, item._id, item.status)} className="icon-nav text-primary mx-1"><AiOutlineEdit /></a>
+                                            <a href onClick={deleteItem.bind(this, item._id)} className="icon-nav text-danger mx-1"><AiOutlineDelete /></a>
                                             <a href className="badge float-end bg-success">{item.status}</a>
                                         </p>
                                     </div>

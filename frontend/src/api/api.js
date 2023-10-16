@@ -1,9 +1,11 @@
-    import axios from 'axios'
-    import { errorToast, successToast } from '../helper/FormValid';
-    import store from '../redux/store/store'
-    import {showLoader, hideLoader} from '../redux/state/settingSlice'
-    import {getToken, setToken, setUserDetails} from '../helper/Session'
+import axios from 'axios'
+import { errorToast, successToast } from '../helper/FormValid';
+import store from '../redux/store/store'
+import {showLoader, hideLoader} from '../redux/state/settingSlice'
+import {getToken, setToken, setUserDetails} from '../helper/Session'
 import { setCanceledTask, setCompletedTask, setNewTask, setProgressTask } from '../redux/state/taskSlice';
+import {setSummary}  from '../redux/state/summarySlice';
+
     const baseURL = 'https://task-backend-pvop.onrender.com/api/v1';
 
     const axiosHeader = {headers: {"token": getToken()}}
@@ -126,11 +128,61 @@ export const taskListByStatus = (Status) => {
 
 }
 
+export const summaryRequest = () => {
+    store.dispatch(showLoader())
+    let uri = `${baseURL}/taskStatusCount`
+    axios.get(uri, axiosHeader).then((res)=> {
+        store.dispatch(hideLoader())
+        if(res.status === 200){
+            store.dispatch(setSummary(res.data['data']))
+        }
+        else{
+            errorToast('Something Went Wrong')
+        }
+    }).catch((error) => {
+        errorToast('Something Went Wrong')
+        store.dispatch(hideLoader())
+    })
+}
+
+export const deleteRequest = async (id) => {
+    store.dispatch(showLoader())
+    let uri = baseURL+'/deleteTask/'+id;
+    return axios.delete(uri, axiosHeader).then((res) => {
+        store.dispatch(hideLoader())
+        if(res.status === 200){
+            successToast('Delete Successfully')
+            return true;
+        }
+        else{
+            errorToast('Delete Unsuccessfully')
+            return false
+        }
+    }).catch((error) => {
+        errorToast('Something Went Wrong')
+        store.dispatch(hideLoader())
+        return false
+    })
+}
 
 
-
-
-
+export function updateStatusRequest (id, status) {
+    store.dispatch(showLoader())
+    const uri = baseURL+"/updateTaskStatus/"+id+"/"+status;
+    return axios.get(uri, axiosHeader).then((res)=> {
+        store.dispatch(hideLoader())
+        if(res.status === 200){
+            successToast('Status Updated')
+            return true;
+        }
+        else {
+            errorToast('Status Update Failed')
+            return false;
+        }
+    }).catch((err) => {
+        errorToast('Something Went Wrong')
+    })
+}
 
 
 
