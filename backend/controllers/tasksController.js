@@ -16,7 +16,7 @@ const createTask = (req, res)=>{
 const deleteTask = (req, res)=>{
     let id = req.params.id;
     let query = {_id: id};
-    tasksModel.remove(query, (err, data)=>{
+    tasksModel.deleteOne(query, (err, data)=>{
         if(err){
             res.status(400).json({status: "failed", data: err})
         }
