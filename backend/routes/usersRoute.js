@@ -4,6 +4,7 @@ const {
     registration,
     login, 
     profileUpdate,
+    profileDetails,
 } = require('../controllers/usersController');
 const auth = require('../middleware/auth');
 
@@ -11,6 +12,5 @@ const auth = require('../middleware/auth');
 usersRoute.post('/registration', registration);
 usersRoute.post('/login', login);
 usersRoute.post('/profileUpdate', auth, profileUpdate);
-
-
+usersRoute.get('/profileDetails', auth, profileDetails)
 module.exports = usersRoute;
